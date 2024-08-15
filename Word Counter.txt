@@ -1,0 +1,37 @@
+import re
+
+def count_words(text):
+    """
+    This function counts the number of words in a given text.
+    It considers words with attached symbols and numbers (e.g., "alisha!!", "alisha13"),
+    but ignores standalone numbers and symbols.
+    """
+    # Use a regular expression to find all sequences of alphabetic characters
+    # possibly attached to numbers and symbols
+    words = re.findall(r'\b[a-zA-Z]+[a-zA-Z0-9]*[!?.,]*\b', text)
+
+    # Returning the count of words
+    return len(words)
+
+def main():
+    """
+    Main function to execute the word counting program.
+    It prompts the user for input and displays the word count.
+    """
+    # Prompting the user to enter a sentence or paragraph
+    text = input("Please enter a sentence or paragraph: ")
+
+    # Checking for empty input
+    if not text.strip():
+        print("Error: The input is empty. Please enter some text.")
+        return
+
+    # Counting the number of words in the input text
+    word_count = count_words(text)
+
+    # Displaying the word count to the user
+    print(f"The number of words in the given text is: {word_count}")
+
+# Running the main function
+if __name__ == "__main__":
+    main()
